@@ -32,6 +32,6 @@ Persistence: the theme that data needs to be stored for long periods of time
 	  each process because files tend to share info
 	- Programs make system calls into the OS to interact with other files
 	  (the OS handles system calls in the file system)
-		- System calls provide a simple way to access devices
-
+		- By providing system calls to programs, OS is often seen as a
+		  standard library
 
