@@ -10,7 +10,7 @@ Time sharing: time with a resource split amongst many entities (CPU)
 Space sharing: resource divided in space amongst many entities (memory)  
 
 To make it seem as if there are many CPUs, the OS allows time sharing of the
-CPU:
+CPU:  
 Process 1: running ------- running  
 Process 2: ------- running -------  
 
