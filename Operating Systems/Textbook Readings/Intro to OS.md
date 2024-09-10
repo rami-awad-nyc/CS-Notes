@@ -16,8 +16,9 @@ The OS is a program that acts as an intermediary between the system (or computer
 
 Virtualizing the CPU: the illusion of turning a single CPU into a seemingly infinite number of CPUs
 Virtualizing memory: each process has its own private virtual address space (can
-simply be called its address space) ← appears as if each process has all the
-physical memory to itself, although physical memory must be shared amongst the processes
+ simply be called its address space) ← appears as if each process has all the
+ physical memory to itself, although physical memory must be shared amongst the
+ processes
 
 Concurrency represents numerous things running at the same time:
 - The OS juggling many processes running at the same time
@@ -34,4 +35,12 @@ Persistence: the theme that data needs to be stored for long periods of time
 	  (the OS handles system calls in the file system)
 		- By providing system calls to programs, OS is often seen as a
 		  standard library
+- A *device driver* is some code in the OS that knows how to deal with a
+  specific device
+
+Design Goals:
+- Virtualization reduces performance, so OS must provide virtualization without
+  excessive overheads
+- The OS should protect programs from each other. They ket to this is
+  *isolation* or isolating processes from each other.
 
