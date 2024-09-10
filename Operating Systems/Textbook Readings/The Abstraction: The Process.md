@@ -11,7 +11,7 @@ Space sharing: resource divided in space amongst many entities (memory)
 
 To make it seem as if there are many CPUs, the OS allows time sharing of the
 CPU:  
-`Process 1: running ------- running` 
+`Process 1: running ------- running`  
 `Process 2: ------- running -------` 
 
 It seems as if both processes are running at the same time, but in reality, they
