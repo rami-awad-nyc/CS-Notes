@@ -18,7 +18,7 @@ It seems as if both processes are running at the same time, but in reality, they
 each get a time slice with the CPU. The more processes running, the slower they
 run
 
-*Mechanisms* are low-level protocals that implement some functionality
+*Mechanisms* are low-level protocals or methods that implement a functionality
 - Example: context switch mechanism gives the OS the ability to stop running a
   process and start running another on the CPU
 
@@ -78,4 +78,8 @@ been *descheduled*.
 
 Only one process can be in the running state at a time for each core of the CPU!
 
+### Data Structures
 
+Every OS has a *process list* or task list that tracks the stack of each
+process. The info for each process is stored in a *Process Control Block* (PCB)
+or process desriptor. The process list is really a collection of PCBs.
