@@ -32,8 +32,27 @@ After typing in a program/command and arguments into a prompt, the shell calls
 typed into the prompt. It then calls `wait()` to wait for the process to finish.
 - `bash, tcsh, zsh` are just a few examples of famous shells
 
-When there's an output, the OS starts looking for free file descriptors. Usually
-this is standard output.
+Why separate `fork()` and `exec()`? To rearrange file descriptors in between the
+two system calls. When there's an output, the OS starts looking for free file
+descriptors. Usually this is standard output.
 - When the shell redirects output to a file, before calling `exec()`, it closes
   standard output and opens the file. Therefore, the first free file descriptor
   is the file. 
+
+`pipe()` system call used to connect the output of a process into a kernel
+'queue' or 'pipe' and the input of another process into the same pipe.
+Basically, the output of a process turns into the input of another process.
+
+### More Process Control
+
+`kill()` system call is only way for processes to communicate with each other.  
+- `kill()` sends a *signal* to a process (numerous types of signals). In UNIX
+  shells, ^C sends interrupt signal to process.
+
+After a process calls system call `signal()`, it can determine what to do if it
+receives a signal. 
+
+The existence of *users* helps prevent anyone from sending signals to any
+process. Each user logs in using a password and then gets full access to
+processes owned by them.
+- A *superuser* can control all processes (`sudo` on Linux) -- use with caution
