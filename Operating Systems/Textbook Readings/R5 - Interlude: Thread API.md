@@ -28,11 +28,13 @@ If returning a pointer to memory on the heap, do it like this: `return (void*) m
 
 Example code in `main`:  
 ```
-pthread_t p;					// declare new thread
-struct myarg args = {10, 20};			// define own struct for arguments
-int returnVal;					// store return value
-pthread_create(&p, NULL, function, &args); 	// create new thread 
-pthread_join(p, &returnVal); 			// store return value in returnVal
+pthread_t p;						// declare new thread
+struct myarg args = {10, 20};				// define own struct for arguments
+int returnVal;						// store return value
+int check = pthread_create(&p, NULL, function, &args); 	// create new thread 
+assert(check == 0); 					// error code, create
+pthread_join(p, &returnVal); 				// store return value in returnVal
+assert(check == 0); 					// join, error code
 ```
 
 ### Locks
@@ -55,10 +57,10 @@ POSIX thread mutex:
 ```
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER; 	// initialize lock
 int check = pthread_mutex_lock(&lock); 			// lock the mutex
-assert(check == 0); 					// lock error code
+assert(check == 0); 					// error code, lock
 ... /* critical section */ 				// critical section
 check = pthread_mutex_unlock(&lock); 			// unlock the mutex
-assert(check == 0); 					// unlock error code
+assert(check == 0); 					// error code, unlock
 ```
 
 If one thread acquires a lock, other threads will wait for release (get blocked).  
