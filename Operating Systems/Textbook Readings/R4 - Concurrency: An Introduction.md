@@ -41,15 +41,15 @@ In C:
 - `pthread_join()` waits for a particular thread to complete.
 
 When two threads run on a processor, the OS *scheduler* decides which thread
-executes at any time. It is difficult to estimate what the scheduler will
-decide (in other words, the output is not *deterministic*.   
+executes at any time. It is difficult to estimate which instruction the
+scheduler will choose. In other words, the output is not *deterministic*.   
 - Lines of C may be multiple lines of assembly instructions. The scheduler
 determines which assembly instructions execute, not which lines of C. Use a
 disassembler to see these instructions: `objdump -d executable_file` on linux.
 Takeaway: BREAK DOWN CODE INTO ASSEMBLY TO DETERMINE POSSIBLE OUTPUTS.   
 
 Since threads can access shared data, concurrency can become a severe issue.
-*race conditions* occur when results depend on timing of code's execution. If a
+*Race conditions* occur when results depend on timing of code's execution. If a
 context switch occurs at an untimely point in execution, we get the wrong
 result.   
 - When multiple threads execute code that can result in a race condition, the
@@ -60,11 +60,11 @@ result.
 ### Mutual Exclusion
 
 To prevent race conditions, the program needs a *mutual exclusion*, which
-guarantees that if one thread is executing in the critical section, other
+guarantees that if one thread is executing in a critical section, other
 threads won't.  
-- *atomicity* is turning a section of code into one block that either executes
+- *Atomicity* is turning a section of code into one block that either executes
   from start to finish or doesn't with no interruptions in between.  
-- *synchronization primitives* needed to treat critical sections and access them
+- *Synchronization primitives* needed to treat critical sections and access them
   in a synchronized and controlled manner.  
 
 
