@@ -24,11 +24,48 @@ thread, void **value_ptr)`.
 - The second argument is a pointer to the return value expected to receive. If
   we don't care about return value, just pass NULL instead.  
 
-Be careful not to return a pointer which refers to something allocated on the
-thread's call stack because this memory will be deallocated when the thread
-completes.  
-- If returning malloc memory, do it like this: `return (void *) memory;`
+If returning a pointer to memory on the heap, do it like this: `return (void*) memory;`
+
+Example code in `main`:  
+```
+pthread_t p;					// declare new thread
+struct myarg args = {10, 20};			// define own struct for arguments
+int returnVal;					// store return value
+pthread_create(&p, NULL, function, &args); 	// create new thread 
+pthread_join(p, &returnVal); 			// store return value in returnVal
+```
 
 ### Locks
 
-Mutual exclusion to a critical section is done using *locks*. 
+Mutual exclusion to a critical section is done using *locks*.  
+
+Locks must be initialized. Two ways:  
+- At compile time: `pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;`  
+- At run time:  
+	```
+	pthread_mutex_t lock;
+	int check = pthread_mutex_init(&lock, NULL); 
+	assert(check == 0);
+	```   
+  * The first argument is the address of the lock, which must be declared.   
+  * The second argument is set of attributes, NULL uses the defaults.   
+  * When finished with lock, call `pthread_mutex_destroy(&lock);`   
+
+POSIX thread mutex:   
+```
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER; 	// initialize lock
+int check = pthread_mutex_lock(&lock); 			// lock the mutex
+assert(check == 0); 					// lock error code
+... /* critical section */ 				// critical section
+check = pthread_mutex_unlock(&lock); 			// unlock the mutex
+assert(check == 0); 					// unlock error code
+```
+
+If one thread acquires a lock, other threads will wait for release (get blocked).  
+
+### Condition Variables
+
+*Condition variables* used when some kind of signaling must take place between
+threads.  
+
+
