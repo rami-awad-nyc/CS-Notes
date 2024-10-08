@@ -34,11 +34,7 @@ AKA threading enables overlap of I/O with other activities within a single
 program. Why not just use multiple processes? It is easier to share data with
 threads. Processes are better when less data needs to be shared.
 
-### Thread Creation
-
-In C:  
-- `pthread_create()` used to create a thread (executes a function).  
-- `pthread_join()` waits for a particular thread to complete.
+### Race Conditions 
 
 When two threads run on a processor, the OS *scheduler* decides which thread
 executes at any time. It is difficult to estimate which instruction the
