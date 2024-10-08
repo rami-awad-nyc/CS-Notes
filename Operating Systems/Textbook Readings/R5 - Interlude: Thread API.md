@@ -89,8 +89,8 @@ Thread 1:
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER; 	// initialize lock
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER; 	// initialize CV
 pthread_mutex_lock(&lock); 				// lock mutex
-while (ready == 0) 					// sleep until signal .. 
-	pthread_cond_wait(&cond, &lock); 		// .. and var change	
+while (ready == 0) 					// sleep until update
+	pthread_cond_wait(&cond, &lock); 		// and signal 
 pthread_mutex_unlock(&lock); 				// unlock mutex
 ```
 Thread 2:  
