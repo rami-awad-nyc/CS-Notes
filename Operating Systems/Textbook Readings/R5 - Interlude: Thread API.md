@@ -52,7 +52,7 @@ Locks must be initialized. Two ways:
 	```   
   * The first argument is the address of the lock, which must be declared.   
   * The second argument is set of attributes, NULL uses the defaults.   
-  * When finished with lock, call `pthread_mutex_destroy(&lock);`   
+- When finished with lock, call `pthread_mutex_destroy(&lock);`   
 
 POSIX thread mutex:   
 ```
@@ -60,6 +60,7 @@ pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER; 	// initialize lock
 pthread_mutex_lock(&lock); 				// lock the mutex
 ... /* critical section */ 				// critical section
 pthread_mutex_unlock(&lock); 				// unlock the mutex
+pthread_mutex_destroy(&lock); 				// destroy lock
 ```
 
 If one thread acquires a lock, other threads will wait for release (get blocked).  
@@ -92,6 +93,7 @@ pthread_mutex_lock(&lock); 				// lock mutex
 while (ready == 0) 					// sleep until update
 	pthread_cond_wait(&cond, &lock); 		// and signal 
 pthread_mutex_unlock(&lock); 				// unlock mutex
+pthread_cond_destroy(&cond);				// destroy cond variable 
 ```
 Thread 2:  
 ```  
