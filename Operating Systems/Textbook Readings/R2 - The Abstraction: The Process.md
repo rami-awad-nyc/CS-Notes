@@ -80,6 +80,6 @@ Only one process can be in the running state at a time for each core of the CPU!
 
 ### Data Structures
 
-Every OS has a *process list* or task list that tracks the stack of each
+Every OS has a *process list* or task list that tracks the status of each
 process. The info for each process is stored in a *Process Control Block* (PCB)
-or process desriptor. The process list is really a collection of PCBs.
+or process descriptor. The process list is really a collection of PCBs.
