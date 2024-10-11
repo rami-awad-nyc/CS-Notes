@@ -100,7 +100,7 @@ Fetch-And-Add:
 - Another hardware primitive called *fetch-and-add*. It takes in a memory
   address, finds the data at that address and increments it by 1. Then, it
   returns the old value.   
-- Application? Ticket lock
+- Application? Ticket lock, not shown here to save space.
 
 If a thread gets interrupted before releasing a lock, the next thread will spin
 until the CPU is returned to first thread. Solution? Yielding.  
@@ -116,3 +116,6 @@ until the CPU is returned to first thread. Solution? Yielding.
 queue to sleep instead of spin. If thread tries to acquire lock but it is
 already held, add the thread to a queue using its ID. Then put the thread to
 sleep using an OS call (varies by system). Linux provides `futex` calls.
+Effectievly, this is the best and most general implementation of a lock that is
+fair (because of the queue) and has decent performance (because of the sleep and
+wake primitives). 
