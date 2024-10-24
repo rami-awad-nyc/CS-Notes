@@ -120,7 +120,7 @@ timeslice is =
 `vruntime_process + (default_weight / weight_process) * runtime`
 
 For example, A has a weight of 3121 (nice level of 5) and lets say its timeslice
-is 10 ms, then its vruntime increases by `(1024 / 3121) * 10 = ~ 1/3`
+is 10 ms, then its vruntime increases by `(1024 / 3121) * 10 = ~3.33`
 
 Instead of lists, which don't do well when scaled, CFS stores processes in
 red-black trees. It only keeps running or runnable processes in it.
