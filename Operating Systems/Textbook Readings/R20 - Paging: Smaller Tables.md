@@ -101,3 +101,16 @@ repeating until L4 is reached.
 
 When L4 is reached, take the PFN and make it the first 40 bits. Then make the
 original offset from the VA the next 12 bits. Now you have the physical address.
+
+*DONE*
+
+If all PTEs are invalid in an L4 table, then the L4 PDE is invalid in an L3 table.
+If all the L4 PDEs are invalid in an L3 table, then the L3 PDE is invalid in an
+L2 table.... and so on. 
+
+If an L4 PTE changes from invalid to valid, the OS must ensure that all
+higher-level tables reflect this change. It does so by allocating new physical
+memory for missing page tables, updating the entries at each level to point to
+these new tables, and setting the valid bits appropriately.
+
+
